@@ -1,7 +1,5 @@
 import {
-  LOAD_CART,
-  ADD_PRODUCT,
-  SUBTRACT_PRODUCT,
+  ADD_CART,
   REMOVE_PRODUCT,
   UPDATE_QUANTITY,
   CLEAR_CART
@@ -58,26 +56,13 @@ const initState = {
 
 export default (state = initState, action) => {
   switch (action.type) {
-    case LOAD_CART:
-      return {
-        ...state,
-        products: action.payload
-      };
-    case ADD_PRODUCT:
+    case ADD_CART:
       return {
         ...state,
         addedProducts: [...state.addedProducts, action.payload],
         totalPrice:
           Math.round((state.totalPrice += action.payload.product.price) * 100) /
           100
-      };
-    case SUBTRACT_PRODUCT:
-      return {
-        ...state,
-        addedProducts: state.addedProducts.filter(
-          addedProduct => addedProduct.id !== action.payload.id
-        ),
-        totalPrice: Math.round((state.totalPrice -= action.payload.price))
       };
     case REMOVE_PRODUCT:
       return {
@@ -92,19 +77,17 @@ export default (state = initState, action) => {
           ) / 100
       };
     case UPDATE_QUANTITY:
-      let item = state.addedProducts.find(
-        item => item.id === action.payload.id
-      );
-      let newCart = state.addedProducts.filter(
-        item => item.id === action.payload.id
-      );
+      let item = {};
+      item = action.payload.product;
+      console.log('item', item);
       item.quantity = action.payload.quantity;
-      newCart.push(item);
+      console.log('after change item', item);
+      console.log('[item]', [item]);
       return {
         ...state,
-        addedProducts: state.addedProducts,
+        addedProducts: [item],
         totalPrice: (state.totalPrice -=
-          action.payload.price * action.payload.quantity)
+          action.payload.product.price * action.payload.quantity)
       };
     case CLEAR_CART:
       return {

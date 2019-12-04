@@ -1,5 +1,5 @@
 import {
-  LOAD_CART,
+  ADD_CART,
   ADD_PRODUCT,
   SUBTRACT_PRODUCT,
   REMOVE_PRODUCT,
@@ -7,9 +7,9 @@ import {
   CLEAR_CART
 } from './type';
 
-export const loadCart = products => ({
-  type: LOAD_CART,
-  payload: products
+export const addCart = product => ({
+  type: ADD_CART,
+  payload: { product, quantity: 1 }
 });
 
 export const addProduct = product => ({
@@ -27,9 +27,9 @@ export const removeProduct = product => ({
   payload: product
 });
 
-export const updateQuantity = (id, quantity) => ({
+export const updateQuantity = (product, quantity) => ({
   type: UPDATE_QUANTITY,
-  payload: { id, quantity: quantity }
+  payload: { product, quantity: quantity }
 });
 
 export const clearCart = () => ({

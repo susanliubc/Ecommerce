@@ -2,13 +2,30 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
-  addProduct,
-  subtractProduct,
   removeProduct,
-  clearCart
+  clearCart,
+  updateQuantity
 } from '../../actions/productAction';
 
 class Cart extends Component {
+  state = {
+    quantity: this.props.addedProducts.quantity,
+    btnVisible: false
+  };
+  handleChange = e => {
+    if (e.target.value <= 1) {
+      alert('Quantity must be greater than 1');
+    } else {
+      this.setState({ [e.target.name]: e.target.value, btnVisible: true });
+    }
+  };
+  handleSubmit = (item, quantity) => {
+    // e.preventDefault();
+    console.log('Update');
+    this.props.updateQuantity(item, quantity);
+    console.log('After Update');
+    this.setState({ btnVisible: false, quantity: 0 });
+  };
   addProduct = item => {
     this.props.addProduct(item);
   };
@@ -22,18 +39,15 @@ class Cart extends Component {
     this.props.clearCart();
   };
   render() {
-    console.log('addedProducts', this.props.addedProducts);
+    console.log('Cart-addedProducts', this.props.addedProducts);
     const addedProducts = this.props.addedProducts.length ? (
       this.props.addedProducts.map(addedProduct => {
         return (
           <li className='collection-item avatar' key={addedProduct.product.id}>
-            {/* <div className='item-img'> */}
             <img
               src={`/products/${addedProduct.product.image}`}
               alt='Cart image loading'
             />
-            {/* </div>
-            <div className='item-desc'> */}
             <span>{addedProduct.product.name}</span>
             <p>{addedProduct.product.desc}</p>
             <p>
@@ -42,31 +56,35 @@ class Cart extends Component {
             <p>
               <b>Quantity: {addedProduct.quantity}</b>
             </p>
-            <div className='add-remove'>
-              <a href='#'>
-                <i
-                  className='material-icons'
-                  onClick={() => addProduct(addedProduct)}
-                >
-                  add_circle_outline
-                </i>
-              </a>
-              <a href='#'>
-                <i
-                  className='material-icons'
-                  onClick={() => subtractProduct(addedProduct)}
-                >
-                  remove_circle_outline
-                </i>
-              </a>
-            </div>
+            <form
+              onSubmit={() =>
+                this.handleSubmit(addedProduct, this.state.quantity)
+              }
+            >
+              <div className='inputfield'>
+                <input
+                  type='text'
+                  id='quantity'
+                  name='quantity'
+                  onChange={this.handleChange}
+                  value={this.state.quantity}
+                />
+                <label htmlFor='quantity'>Change Quantity</label>
+              </div>
+              {this.state.btnVisible ? (
+                <div className='changeBtn'>
+                  <button type='submit' className='btn btn-info'>
+                    Update Quantity
+                  </button>
+                </div>
+              ) : null}
+            </form>
             <button
-              className='btn red remove'
+              className='btn red removeBtn'
               onClick={() => this.removeProduct(addedProduct)}
             >
               Remove Product
             </button>
-            {/* </div> */}
           </li>
         );
       })
@@ -90,8 +108,7 @@ class Cart extends Component {
 Cart.propTypes = {
   addedProducts: PropTypes.array.isRequired,
   totalPrice: PropTypes.number.isRequired,
-  addProduct: PropTypes.func.isRequired,
-  subtractProduct: PropTypes.func.isRequired,
+  updateQuantity: PropTypes.func.isRequired,
   removeProduct: PropTypes.func.isRequired
 };
 
@@ -101,8 +118,7 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {
-  addProduct,
-  subtractProduct,
+  updateQuantity,
   removeProduct,
   clearCart
 })(Cart);
