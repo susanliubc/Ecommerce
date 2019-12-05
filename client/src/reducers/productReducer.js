@@ -55,11 +55,23 @@ const initState = {
 };
 
 export default (state = initState, action) => {
+  let updatedCart;
+  let updatedItemIndex;
   switch (action.type) {
     case ADD_CART:
       return {
         ...state,
-        addedProducts: [...state.addedProducts, action.payload],
+        addedProducts:
+          state.addedProducts.length === 0 ||
+          state.addedProduct.findIndex(
+            product => product.id === action.payload.product.id
+          ) === -1
+            ? [...state.addedProducts, action.payload]
+            : state.addedProducts.map(addedProduct =>
+                addedProduct.product.id === action.payload.product.id
+                  ? { ...addedProduct, quantity: (addedProduct.quantity += 1) }
+                  : null
+              ),
         totalPrice:
           Math.round((state.totalPrice += action.payload.product.price) * 100) /
           100
@@ -77,17 +89,24 @@ export default (state = initState, action) => {
           ) / 100
       };
     case UPDATE_QUANTITY:
-      let item = {};
-      item = action.payload.product;
-      console.log('item', item);
-      item.quantity = action.payload.quantity;
-      console.log('after change item', item);
-      console.log('[item]', [item]);
+      // updatedCart = [...state.addedProducts];
+      // updatedItemIndex = updatedCart.findIndex(
+      //   product => product.id === action.payload.product.id
+      // );
+
+      // const updatedItem = { ...updatedCart[updatedItemIndex] };
+      // updatedItem.quantity = action.payload.quantity;
+      // updatedCart[updatedItemIndex] = updatedItem;
+      // console.log('payload', action.payload);
+      // console.log('updatedCart', updatedCart);
       return {
         ...state,
-        addedProducts: [item],
-        totalPrice: (state.totalPrice -=
-          action.payload.product.price * action.payload.quantity)
+        addedProducts: state.addedProducts.map(addedProduct =>
+          addedProduct.product.id === action.payload.product.id
+            ? { ...addedProduct, quantity: action.payload.quantity }
+            : addedProduct
+        ),
+        totalPrice: state.totalPrice
       };
     case CLEAR_CART:
       return {
