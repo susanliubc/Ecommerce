@@ -2,14 +2,8 @@
   box-sizing: border-box;
 }
 
-.body {
-  background-color: lightskyblue;
-}
-
-.app {
-  width: 800px;
-  margin: 30px;
-  padding: 20px;
+.App {
+  font-family: 'Roboto', sans-serif;
 }
 
 .App h3 {
@@ -17,7 +11,8 @@
 }
 
 .productList {
-  margin: 0px 40px 20px;
+  margin: 0 3rem 1rem;
+  border: 2px solid #edf2f7;
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
@@ -39,21 +34,27 @@
 }
 
 .product .addBtn {
-  background-color: lightskyblue;
+  background-color: #38b2ac;
+  color: #fff;
   text-align: center;
   font-size: 16px;
   padding: 6px 10px;
   border: none;
 }
 
+.product .addBtn:hover {
+  background-color: #4fd1c5;
+}
+
 .cart {
-  border: #ccc;
-  background-color: #f4f4f4;
+  border: 2px solid #edf2f7;
+  background-color: #f7fafc;
   margin: 0.5rem 3rem;
 }
 
 .cart h3 {
-  padding: 20px;
+  margin-left: 1rem;
+  padding-left: 1rem;
 }
 
 .cartItem {
@@ -90,11 +91,13 @@
 .cartItem .removeBtn {
   width: 120px;
   height: 30px;
+  background-color: #f6e05e;
+  color: #4a5568;
 }
 
 @media only screen and (max-width: 600px) {
   .productList {
-    margin: 0.5rem 0rem;
+    margin: 0.5rem;
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
@@ -106,6 +109,10 @@
 
   .cart h3 {
     margin-left: 0.5rem;
+  }
+
+  .cartList .totalPrice {
+    margin-right: 0.8rem;
   }
 
   .cartItem {
