@@ -103,6 +103,15 @@
     justify-items: center;
   }
 
+  .product {
+    width: auto;
+  }
+
+  .product img {
+    width: 300px;
+    height: 240px;
+  }
+
   .cart {
     margin: 0.5rem;
   }
@@ -112,7 +121,7 @@
   }
 
   .cartList .totalPrice {
-    margin-right: 0.8rem;
+    margin-right: 0.5rem;
   }
 
   .cartItem {

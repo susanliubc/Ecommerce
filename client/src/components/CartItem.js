@@ -1,17 +1,22 @@
 import React from 'react';
 
 const CartItem = ({
-  cartItem: { id, name, description, img, price, quantity },
+  cart,
+  cartItem: { id, name, description, price, quantity },
   removeFromCart
 }) => {
   return (
-    <div className='cartItem'>  
-      <img src={img} alt='loading cartItem' className='cartImg'></img>
-      <span className="name">{name}</span>
-      <span className="price">
+    <li className='cartItem'>
+      <img
+        src={`/photos/${name.toLowerCase()}.jpg`}
+        alt='loading cartItem'
+        className='cartImg'
+      ></img>
+      <span className='name'>{name}</span>
+      <span className='price'>
         <b>Price: ${price}</b>
       </span>
-      <span className="quantity">
+      <span className='quantity'>
         <b>Quantity: {quantity}</b>
       </span>
       <button
@@ -21,7 +26,6 @@ const CartItem = ({
             id,
             name,
             description,
-            img,
             price,
             quantity
           })
@@ -29,7 +33,14 @@ const CartItem = ({
       >
         Remove Product
       </button>
-    </div>
+      <div className='change-quantity'>
+        <a
+          onClick={() =>
+            addToCarts({ id, name, description, price, quantity: 1 })
+          }
+        ></a>
+      </div>
+    </li>
   );
 };
 
