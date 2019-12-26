@@ -1,19 +1,24 @@
 import React from 'react';
 import './App.css';
-import ProductList from './components/ProductList';
-import products from './data';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Home from './components/pages/Home';
+import Register from './components/pages/Register';
+// import Login from './components/pages/Login';
 import { Provider } from 'react-redux';
 import store from './store';
-import CartList from './components/CartList';
 
 const App = () => {
   return (
     <Provider store={store}>
-      <div className='App'>
-        <h3>Product List</h3>
-        <CartList />
-        <ProductList products={products} />
-      </div>
+      <BrowserRouter>
+        <div className='App'>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/register' component={Register} />
+            {/* <Route exact path='/login' component={Login} /> */}
+          </Switch>
+        </div>
+      </BrowserRouter>
     </Provider>
   );
 };

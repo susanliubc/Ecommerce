@@ -2,20 +2,13 @@ import React from 'react';
 import ProductList from '../ProductList';
 import products from '../../data';
 import CartList from '../CartList';
-import { useHistory } from 'react-router-dom';
+import Header from '../layouts/Header';
 
 const Home = () => {
-  let history = useHistory();
-  const handleCheckout = () => {
-    history.push('/checkout');
-  };
   return (
-    <div>
-      <h3>Product List</h3>
+    <div className='home'>
+      <Header />
       <CartList />
-      <button onClick={handleCheckout} className='checkoutBtn'>
-        Checkout
-      </button>
       <ProductList products={products} />
     </div>
   );

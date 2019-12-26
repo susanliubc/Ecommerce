@@ -2,20 +2,303 @@
   box-sizing: border-box;
 }
 
-.App {
+body {
   font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  width: 100%;
 }
 
 .App h3 {
   margin-left: 3rem;
 }
 
+.landing {
+  margin: 0.5rem 3rem;
+  background: url('/photos/food-cover.jpg') no-repeat center center/cover;
+  position: relative;
+  height: 60vh;
+}
+
+.light-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.landing-inner {
+  color: #2c7a7b;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 70%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  overflow: hidden;
+  padding: 0 2rem;
+}
+
+.large {
+  font-size: 2rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.lead {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #319795;
+  color: #fff;
+  padding: 0.4rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  outline: none;
+  transition: opacity 0.2s ease-in;
+  margin-right: 0.4rem;
+}
+
+.btn-large {
+  font-size: 1rem;
+  width: 6rem;
+  padding: 0.3rem 1rem;
+  margin-right: 0.3rem;
+}
+
+.btn-small {
+  font-size: 0.8rem;
+  width: 5rem;
+  padding: 0.2rem 0.6rem;
+  margin-right: 0.2rem;
+}
+
+.btn-primary {
+  background-color: #319795;
+}
+
+.btn-primary:hover {
+  background-color: lighten(#319795, 5%);
+}
+
+.btn-light {
+  background-color: #4299e1;
+}
+
+.btn-light:hover {
+  background-color: lighten(#4299e1, 5%);
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+}
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+}
+.grid-2-3 {
+  display: grid;
+  grid-template-columns: repeat(2fr, 3fr);
+  grid-gap: 2rem;
+}
+
+.p {
+  padding: 0.5rem;
+}
+
+.p-1 {
+  padding: 1rem;
+}
+
+.p-2 {
+  padding: 2rem;
+}
+
+.p-3 {
+  padding: 3rem;
+}
+
+.p-4 {
+  padding: 4rem;
+}
+
+.py {
+  padding: 0.5rem 0;
+}
+
+.py-1 {
+  padding: 1rem 0;
+}
+
+.py-2 {
+  padding: 2rem 0;
+}
+
+.py-3 {
+  padding: 3rem 0;
+}
+
+.py-4 {
+  padding: 4rem 0;
+}
+
+.m {
+  margin: 0.5rem;
+}
+
+.m-1 {
+  margin: 1rem;
+}
+
+.m-2 {
+  margin: 2rem;
+}
+
+.m-3 {
+  margin: 3rem;
+}
+
+.m-4 {
+  margin: 4rem;
+}
+
+.my {
+  margin: 0.5rem 0;
+}
+
+.my-1 {
+  margin: 1rem 0;
+}
+
+.my-2 {
+  margin: 2rem 0;
+}
+
+.my-3 {
+  margin: 3rem 0;
+}
+
+.my-4 {
+  margin: 4rem 0;
+}
+
+.card {
+  padding: 1rem;
+  border: #ccc 1px solid;
+  margin: 0.7rem 0;
+}
+
+.list {
+  margin: 0.5rem 0;
+}
+
+.list li {
+  padding-bottom: 0.3rem;
+}
+
+.form-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  overflow: hidden;
+  padding: 0 2rem;
+}
+
+.form-container h1,
+h2,
+h3 {
+  text-align: center;
+}
+
+.form-group {
+  margin: 1.2rem 0;
+}
+
+.form-group input {
+  margin: 0.2rem 0;
+}
+
+.form-text {
+  display: block;
+  margin-top: 0.3rem;
+  color: #888;
+}
+
+input {
+  margin: 1.2rem 0;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='date'],
+select,
+textarea {
+  display: block;
+  width: 100%;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+}
+
+input[type='submit'],
+button {
+  font: inherit;
+}
+
 .productList {
   margin: 0 3rem 1rem;
   border: 2px solid #edf2f7;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   justify-items: center;
+  background-color: #f1f8ff;
+  overflow: scroll;
 }
 
 .productList h3 {
@@ -24,12 +307,12 @@
 
 .product img {
   width: 200px;
-  height: 200px;
+  height: 160px;
 }
 
 .product {
   width: 260px;
-  margin: 0px 20px 10px;
+  margin: 20px 20px 10px;
   text-align: center;
 }
 
@@ -54,13 +337,15 @@
 
 .cart h3 {
   margin-left: 1rem;
-  padding-left: 1rem;
 }
 
 .cartItem {
   margin-bottom: 10px;
-  display: gird;
-  grid-template-columns: 1fr;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  font-size: 1rem;
+  align-items: center;
+  justify-items: left;
 }
 
 .cartItem img {
@@ -68,24 +353,19 @@
   vertical-align: middle;
 }
 
-.cartItem .name,
-.price,
-.quantity,
-.removeBtn {
-  margin-left: 10px;
-  margin-top: 25px;
+.cartItem .change-quantity {
+  display: flex;
 }
 
-.cartItem .name,
-.price,
-.quantity {
-  width: 120px;
+.cartListItem {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .cartList .totalPrice {
   text-align: right;
-  margin-right: 40px;
-  padding-bottom: 20px;
+  margin-right: 2rem;
+  padding-bottom: 1rem;
 }
 
 .cartItem .removeBtn {
@@ -95,7 +375,39 @@
   color: #4a5568;
 }
 
+@media screen and (max-width: 770px) and (min-width: 600px) {
+  .cartItem {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1rem;
+    grid-gap: 0.5rem;
+  }
+
+  .productList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+  }
+}
+
 @media only screen and (max-width: 600px) {
+  .landing {
+    margin: 0.5rem;
+  }
+
+  .landing-inner {
+    margin-top: 1rem;
+  }
+
+  .large {
+    font-size: 1.2rem;
+  }
+
+  .lead {
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+
   .productList {
     margin: 0.5rem;
     display: grid;
@@ -117,7 +429,7 @@
   }
 
   .cart h3 {
-    margin-left: 0.5rem;
+    margin-left: 1rem;
   }
 
   .cartList .totalPrice {
@@ -126,6 +438,11 @@
 
   .cartItem {
     margin-bottom: 1rem;
+    font-size: 18px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1rem;
+    grid-gap: 1rem;
   }
 
   .App h3 {
