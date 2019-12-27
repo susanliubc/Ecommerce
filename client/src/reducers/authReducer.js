@@ -12,7 +12,7 @@ import {
 const initState = {
   user: null,
   isAuthenticated: false,
-  // token: localStorage.getItem('token'),
+  token: localStorage.getItem('token'),
   loading: true,
   errors: null
 };
@@ -28,7 +28,7 @@ export default (state = initState, action) => {
       };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
-      // localStorage.setItem('token', action.payload.token);
+      localStorage.setItem('token', action.payload.token);
       return {
         ...state,
         ...action.payload,
@@ -39,11 +39,11 @@ export default (state = initState, action) => {
     case LOGIN_FAIL:
     case AUTH_ERROR:
     case LOGOUT:
-      // localStorage.removeItem('token');
+      localStorage.removeItem('token');
       return {
         ...state,
         user: {},
-        // token: null,
+        token: null,
         isAuthenticated: false,
         loading: false,
         errors: action.payload

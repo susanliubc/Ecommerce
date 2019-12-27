@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { registerUser } from '../../actions/authAction';
+import { loginUser } from '../../actions/authAction';
 import PropTypes from 'prop-types';
 
-const Register = ({ isAuthenticated, errors, registerUser }) => {
+const Login = ({ isAuthenticated, errors, loginUser }) => {
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -14,7 +14,7 @@ const Register = ({ isAuthenticated, errors, registerUser }) => {
 
   const [errorState, setErrorState] = useState({});
 
-  const { name, email, password, password2 } = user;
+  const { name, password } = user;
   let history = useHistory();
 
   useEffect(() => {
@@ -32,10 +32,10 @@ const Register = ({ isAuthenticated, errors, registerUser }) => {
   };
   const handleSubmit = e => {
     e.preventDefault();
-    registerUser({ name, email, password });
+    loginUser({ name, password });
   };
   return (
-    <div className='register'>
+    <div className='login'>
       <div className='container'>
         <div className='form-container'>
           <h1 className='large'>Sign Up</h1>
@@ -57,20 +57,6 @@ const Register = ({ isAuthenticated, errors, registerUser }) => {
             </div>
             <div className='form-group'>
               <input
-                type='email'
-                name='email'
-                id='email'
-                value={email}
-                onChange={handleChange}
-                required
-              />
-              {errorState && (
-                <div className='invalid-feedback'>{errorState.email}</div>
-              )}
-              <label htmlFor='email'>Email</label>
-            </div>
-            <div className='form-group'>
-              <input
                 type='password'
                 name='password'
                 id='password'
@@ -83,22 +69,8 @@ const Register = ({ isAuthenticated, errors, registerUser }) => {
               )}
               <label htmlFor='password'>Password</label>
             </div>
-            <div className='form-group'>
-              <input
-                type='password'
-                name='password2'
-                id='password2'
-                value={password2}
-                onChange={handleChange}
-                required
-              />
-              {errorState && (
-                <div className='invalid-feedback'>{errorState.password2}</div>
-              )}
-              <label htmlFor='password2'>Confirm Password</label>
-            </div>
             <button type='submit' className='btn btn-large'>
-              Register
+              Login
             </button>
           </form>
         </div>
@@ -107,8 +79,8 @@ const Register = ({ isAuthenticated, errors, registerUser }) => {
   );
 };
 
-Register.propTypes = {
-  registerUser: PropTypes.func.isRequired,
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -118,4 +90,4 @@ const mapStateToProps = state => ({
   errors: state.auth.errors
 });
 
-export default connect(mapStateToProps, { registerUser })(Register);
+export default connect(mapStateToProps, { loginUser })(Login);
