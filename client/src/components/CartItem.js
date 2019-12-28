@@ -1,14 +1,15 @@
 import React from 'react';
 
 const CartItem = ({
-  cart,
-  cartItem: { id, name, description, price, quantity },
-  removeFromCart
+  cartItem: { id, name, img, description, price, quantity },
+  removeFromCart,
+  addToCart,
+  dropFromCart
 }) => {
   return (
     <li className='cartItem'>
       <img
-        src={`/photos/${name.toLowerCase()}.jpg`}
+        src={`/photos/${img}.jpg`}
         alt='loading cartItem'
         className='cartImg'
       ></img>
@@ -16,30 +17,41 @@ const CartItem = ({
       <span className='price'>
         <b>Price: ${price}</b>
       </span>
-      <span className='quantity'>
-        <b>Quantity: {quantity}</b>
-      </span>
+
+      <div className='change-quantity'>
+        <a
+          onClick={() =>
+            addToCart({ id, name, img, description, price, quantity: 1 })
+          }
+        >
+          <i className='material-icons'>add_circle_outline</i>
+        </a>
+        <span className='quantity'>
+          <b>{quantity}</b>
+        </span>
+        <a
+          onClick={() =>
+            dropFromCart({ id, name, img, description, price, quantity })
+          }
+        >
+          <i className='material-icons'>remove_circle_outline</i>
+        </a>
+      </div>
       <button
         className='removeBtn'
         onClick={() =>
           removeFromCart({
             id,
             name,
+            img,
             description,
             price,
             quantity
           })
         }
       >
-        Remove Product
+        Remove
       </button>
-      <div className='change-quantity'>
-        <a
-          onClick={() =>
-            addToCarts({ id, name, description, price, quantity: 1 })
-          }
-        ></a>
-      </div>
     </li>
   );
 };

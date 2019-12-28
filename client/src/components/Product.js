@@ -3,22 +3,24 @@ import { connect } from 'react-redux';
 import { addToCarts } from '../actions/cartAction';
 
 const Product = ({
-  product: { id, name, description, img, price },
+  product: { id, name, img, description, price },
   cart,
   addToCarts
 }) => {
   return (
     <div className='product'>
+      <img src={`/photos/${img}.jpg`} alt='loading product'></img>
       <h3>{name}</h3>
-      <h4>{description}</h4>
-      <img src={img} alt='loading product'></img>
+      <p className='product-description'>
+        <small>{description}</small>
+      </p>
       <p>
         <b>Price: ${price}</b>
       </p>
       <button
         className='addBtn'
         onClick={() =>
-          addToCarts({ id, name, description, img, price, quantity: 1 })
+          addToCarts({ id, name, img, description, price, quantity: 1 })
         }
       >
         Add To Cart

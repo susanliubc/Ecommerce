@@ -21,10 +21,6 @@ img {
   width: 100%;
 }
 
-.App h3 {
-  margin-left: 3rem;
-}
-
 .landing {
   margin: 0.5rem 3rem;
   background: url('/photos/food-cover.jpg') no-repeat center center/cover;
@@ -50,6 +46,10 @@ img {
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+.landing-inner h2 {
+  margin-top: 4rem;
 }
 
 .container {
@@ -94,6 +94,10 @@ img {
   outline: none;
   transition: opacity 0.2s ease-in;
   margin-right: 0.4rem;
+}
+
+.btn-block {
+  display: block;
 }
 
 .btn-large {
@@ -244,7 +248,7 @@ img {
 
 .form-container {
   max-width: 600px;
-  margin: 2rem auto;
+  margin: 4rem auto 2rem;
   overflow: hidden;
   padding: 0 2rem;
 }
@@ -291,6 +295,54 @@ button {
   font: inherit;
 }
 
+.invalid-feedback {
+  margin: 0.5rem 1rem;
+  border: 1px solid red;
+  font-weight: bold;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.1rem 2rem;
+  z-index: 1;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  opacity: 0.9;
+  margin-bottom: 1rem;
+  position: fixed;
+  background-color: #319795;
+  color: #fff;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-nav {
+  display: flex;
+}
+
+.logo a {
+  color: #fff;
+}
+
+.logo {
+  margin-left: 1rem;
+}
+
+.nav-link {
+  /* padding: 0.45rem;
+  margin: 0 0.25rem; */
+  color: #fff;
+  margin-right: 0.5rem;
+}
+.nav-link:hover {
+  color: #f4f4f4;
+}
+
 .productList {
   margin: 0 3rem 1rem;
   border: 2px solid #edf2f7;
@@ -308,6 +360,10 @@ button {
 .product img {
   width: 200px;
   height: 160px;
+}
+
+.product-description {
+  color: #4a5568;
 }
 
 .product {
@@ -342,10 +398,10 @@ button {
 .cartItem {
   margin-bottom: 10px;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   font-size: 1rem;
   align-items: center;
-  justify-items: left;
+  justify-items: center;
 }
 
 .cartItem img {
@@ -355,6 +411,10 @@ button {
 
 .cartItem .change-quantity {
   display: flex;
+}
+
+.cartItem .change-quantity i {
+  line-height: 1.2;
 }
 
 .cartListItem {
@@ -369,10 +429,14 @@ button {
 }
 
 .cartItem .removeBtn {
-  width: 120px;
-  height: 30px;
+  width: 100px;
   background-color: #f6e05e;
   color: #4a5568;
+}
+
+.checkoutBtn {
+  margin: 1rem auto;
+  display: flex;
 }
 
 @media screen and (max-width: 770px) and (min-width: 600px) {
@@ -443,9 +507,5 @@ button {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1rem;
     grid-gap: 1rem;
-  }
-
-  .App h3 {
-    margin-left: 0.5rem;
   }
 }

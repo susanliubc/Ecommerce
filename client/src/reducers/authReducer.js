@@ -10,11 +10,11 @@ import {
 } from '../actions/type';
 
 const initState = {
-  user: null,
+  user: {},
   isAuthenticated: false,
   token: localStorage.getItem('token'),
   loading: true,
-  errors: null
+  errors: {}
 };
 
 export default (state = initState, action) => {
@@ -51,7 +51,7 @@ export default (state = initState, action) => {
     case CLEAR_ERROR:
       return {
         ...state,
-        errors: null
+        errors: {}
       };
     default:
       return state;
