@@ -59,6 +59,10 @@ img {
   padding: 0 2rem;
 }
 
+.nonelanding-container {
+  padding-top: 4rem;
+}
+
 .large {
   font-size: 2rem;
   line-height: 1.2;
@@ -248,15 +252,24 @@ img {
 
 .form-container {
   max-width: 600px;
-  margin: 4rem auto 2rem;
+  margin: 0rem auto 2rem;
   overflow: hidden;
-  padding: 0 2rem;
+  padding: 4rem 2rem;
 }
 
 .form-container h1,
 h2,
 h3 {
   text-align: center;
+}
+
+.dashboard {
+  max-width: 1200px;
+  padding-top: 4rem;
+}
+
+.dashboard-container {
+  padding: 0 1rem 1rem;
 }
 
 .form-group {
@@ -439,7 +452,16 @@ button {
   display: flex;
 }
 
+.dashboard {
+  max-width: 1200px;
+}
+
 @media screen and (max-width: 770px) and (min-width: 600px) {
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
   .cartItem {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -455,6 +477,23 @@ button {
 }
 
 @media only screen and (max-width: 600px) {
+  .navbar {
+    padding: 0.2rem 0.4rem;
+  }
+
+  .navbar .logo {
+    margin: 0;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .buttons .btn {
+    margin-bottom: 0.5rem;
+  }
+
   .landing {
     margin: 0.5rem;
   }
@@ -470,6 +509,14 @@ button {
   .lead {
     font-size: 0.8rem;
     font-weight: bold;
+  }
+
+  .navbar {
+    font-size: 0.8rem;
+  }
+
+  .navbar-nav {
+    padding: 0 0 0 1rem;
   }
 
   .productList {
