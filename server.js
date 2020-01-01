@@ -4,7 +4,7 @@ const connectDB = require('./config/db');
 const app = express();
 
 //Connect database
-connectDB;
+connectDB();
 
 //Init middleware
 app.use(express.json());
@@ -16,4 +16,4 @@ app.use('/api/cart', require('./routes/cart'));
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => console.log('Server started on port ${PORT'));
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
