@@ -10,7 +10,7 @@ import {
 } from '../actions/type';
 
 const initState = {
-  user: {},
+  user: null,
   isAuthenticated: false,
   token: localStorage.getItem('token'),
   loading: true,
@@ -32,7 +32,7 @@ export default (state = initState, action) => {
       return {
         ...state,
         ...action.payload,
-        isAuthenticated: true,
+        isAuthenticated: false,
         loading: false
       };
     case REGISTER_FAIL:
@@ -51,7 +51,7 @@ export default (state = initState, action) => {
     case CLEAR_ERROR:
       return {
         ...state,
-        errors: {}
+        errors: null
       };
     default:
       return state;

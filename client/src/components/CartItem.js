@@ -20,6 +20,7 @@ const CartItem = ({
 
       <div className='change-quantity'>
         <a
+          href='#!'
           onClick={() =>
             addToCart({ id, name, img, description, price, quantity: 1 })
           }
@@ -30,6 +31,7 @@ const CartItem = ({
           <b>{quantity}</b>
         </span>
         <a
+          href='#!'
           onClick={() =>
             dropFromCart({ id, name, img, description, price, quantity })
           }

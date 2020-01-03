@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import CartItem from './CartItem';
 import { connect } from 'react-redux';
 import {
@@ -11,20 +11,10 @@ import {
 const CartList = ({
   cart,
   totalPrice,
-  isAuthenticated,
   removeFromCarts,
   addToCarts,
   dropFromCarts
 }) => {
-  let history = useHistory();
-  const handleClick = () => {
-    console.log('here');
-    return isAuthenticated
-      ? history.push('/dashboard')
-      : history.push('/login');
-  };
-
-  console.log('isAuthenticated', isAuthenticated);
   return (
     <Fragment>
       <div className='cart'>
@@ -57,19 +47,23 @@ const CartList = ({
               <b>Total price: $ {(totalPrice * 1.12).toFixed(2)}</b>
             </p>
           </div>
-          <button className='btn btn-large checkoutBtn' onClick={handleClick}>
-            Checkout
-          </button>
         </div>
       </div>
     </Fragment>
   );
 };
 
+CartList.propTypes = {
+  cart: PropTypes.array.isRequired,
+  totalPrice: PropTypes.number.isRequired,
+  removeFromCarts: PropTypes.func.isRequired,
+  addToCarts: PropTypes.func.isRequired,
+  dropFromCarts: PropTypes.func.isRequired
+};
+
 const mapStateToProps = state => ({
   cart: state.cart.cart,
-  totalPrice: state.cart.totalPrice,
-  isAuthenticated: state.auth.isAuthenticated
+  totalPrice: state.cart.totalPrice
 });
 
 export default connect(mapStateToProps, {

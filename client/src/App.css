@@ -48,8 +48,8 @@ img {
   text-align: center;
 }
 
-.landing-inner h2 {
-  margin-top: 4rem;
+.landing-inner h3 {
+  padding-top: 2rem;
 }
 
 .container {
@@ -64,13 +64,13 @@ img {
 }
 
 .large {
-  font-size: 2rem;
+  font-size: 1.5rem;
   line-height: 1.2;
   margin-bottom: 1rem;
 }
 
 .lead {
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin-bottom: 1rem;
 }
 
@@ -309,9 +309,10 @@ button {
 }
 
 .invalid-feedback {
-  margin: 0.5rem 1rem;
+  margin: 0.5rem 0rem;
   border: 1px solid red;
   font-weight: bold;
+  padding: 0.2rem 0.5rem;
 }
 
 .navbar {
@@ -327,6 +328,8 @@ button {
   position: fixed;
   background-color: #319795;
   color: #fff;
+  top: 0;
+  left: 0;
 }
 
 .nav-container {
@@ -424,10 +427,11 @@ button {
 
 .cartItem .change-quantity {
   display: flex;
+  align-items: center;
 }
 
 .cartItem .change-quantity i {
-  line-height: 1.2;
+  line-height: 1.6;
 }
 
 .cartListItem {
@@ -466,7 +470,8 @@ button {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1rem;
-    grid-gap: 0.5rem;
+    grid-column-gap: 0.5rem;
+    grid-row-gap: 1rem;
   }
 
   .productList {
@@ -478,7 +483,7 @@ button {
 
 @media only screen and (max-width: 600px) {
   .navbar {
-    padding: 0.2rem 0.4rem;
+    padding: 0.2rem 0.5rem;
   }
 
   .navbar .logo {
@@ -500,6 +505,15 @@ button {
 
   .landing-inner {
     margin-top: 1rem;
+  }
+
+  .landing-inner h3 {
+    padding-top: 2rem;
+    margin-top: 2rem;
+  }
+
+  .landing-inner .buttons {
+    display: none;
   }
 
   .large {

@@ -9,13 +9,11 @@ import {
   CLEAR_ERROR
 } from './type';
 import axios from 'axios';
-import setAuthToken from '../utils/setAuthToken';
 
 //Load user
-export const loadUser = () => async dispatch => {
-  setAuthToken(localStorage.token);
+export const loadUser = () => async (dispatch, getState) => {
   try {
-    const res = await axios.get('/api/auth');
+    const res = await axios.get('/api/auth', tokenConfig(getState));
 
     dispatch({
       type: USER_LOADED,
@@ -24,7 +22,7 @@ export const loadUser = () => async dispatch => {
   } catch (error) {
     dispatch({
       type: AUTH_ERROR,
-      payload: error.reposnse.data.msg
+      payload: error.response.data.msg
     });
   }
 };
@@ -44,8 +42,7 @@ export const registerUser = formData => async dispatch => {
       type: REGISTER_SUCCESS,
       payload: res.data
     });
-
-    loadUser();
+    dispatch(loadUser());
   } catch (error) {
     dispatch({
       type: REGISTER_FAIL,
@@ -62,6 +59,8 @@ export const loginUser = formData => async dispatch => {
     }
   };
 
+  console.log('formData', formData);
+
   try {
     const res = await axios.post('/api/auth', formData, config);
 
@@ -69,8 +68,7 @@ export const loginUser = formData => async dispatch => {
       type: LOGIN_SUCCESS,
       payload: res.data
     });
-
-    loadUser();
+    dispatch(loadUser());
   } catch (error) {
     dispatch({
       type: LOGIN_FAIL,
@@ -86,3 +84,16 @@ export const logout = () => ({
 export const clearError = () => ({
   type: CLEAR_ERROR
 });
+
+//Setup config/headers and token
+export const tokenConfig = getState => {
+  //Get token from localStorage
+  const token = getState().auth.token;
+
+  //If token exists, add to header
+  if (token) {
+    axios.defaults.headers.common['x-auth-token'] = token;
+  } else {
+    delete axios.defaults.headers.common['x-auth-token'];
+  }
+};
