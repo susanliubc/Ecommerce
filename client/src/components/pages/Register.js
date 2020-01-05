@@ -3,18 +3,26 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authAction';
 import PropTypes from 'prop-types';
+import UserDetail from './UserDetail';
+import PersonalDetail from './PersonalDetail';
+import Confirm from './Confirm';
+import Success from './Success';
 
 const Register = ({ isAuthenticated, errors, registerUser }) => {
   const [user, setUser] = useState({
+    step: 1,
     name: '',
     email: '',
     password: '',
-    password2: ''
+    password2: '',
+    city: '',
+    address: '',
+    postcode: ''
   });
 
   const [errorState, setErrorState] = useState({});
 
-  const { name, email, password, password2 } = user;
+  // const { name, email, password, password2 } = user;
   let history = useHistory();
 
   useEffect(() => {
@@ -27,84 +35,58 @@ const Register = ({ isAuthenticated, errors, registerUser }) => {
     }
   }, [isAuthenticated, errors, history]);
 
-  const handleChange = e => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+  //Proceed to next step
+  const nextStep = () => {
+    setUser({ step: step + 1 });
   };
-  const handleSubmit = e => {
-    e.preventDefault();
-    registerUser({ name, email, password });
+
+  //Go back to previous step
+  const lastStep = () => {
+    setUser({ step: step - 1 });
   };
-  return (
-    <div className='register'>
-      <div className='container'>
-        <div className='form-container'>
-          <h1 className='large'>Sign Up</h1>
-          <p className='lead'>Create your account</p>
-          <form onSubmit={handleSubmit}>
-            <div className='form-group'>
-              <input
-                type='text'
-                name='name'
-                id='name'
-                value={name}
-                onChange={handleChange}
-                required
-              />
-              {errorState && (
-                <div className='invalid-feedback'>{errorState.name}</div>
-              )}
-              <label htmlFor='username'>User Name</label>
-            </div>
-            <div className='form-group'>
-              <input
-                type='email'
-                name='email'
-                id='email'
-                value={email}
-                onChange={handleChange}
-                required
-              />
-              {errorState && (
-                <div className='invalid-feedback'>{errorState.email}</div>
-              )}
-              <label htmlFor='email'>Email</label>
-            </div>
-            <div className='form-group'>
-              <input
-                type='password'
-                name='password'
-                id='password'
-                value={password}
-                onChange={handleChange}
-                required
-              />
-              {errorState && (
-                <div className='invalid-feedback'>{errorState.password}</div>
-              )}
-              <label htmlFor='password'>Password</label>
-            </div>
-            <div className='form-group'>
-              <input
-                type='password'
-                name='password2'
-                id='password2'
-                value={password2}
-                onChange={handleChange}
-                required
-              />
-              {errorState && (
-                <div className='invalid-feedback'>{errorState.password2}</div>
-              )}
-              <label htmlFor='password2'>Confirm Password</label>
-            </div>
-            <button type='submit' className='btn btn-large'>
-              Register
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  );
+
+  const handleChange = input => e => {
+    setUser({ ...user, [input]: e.target.value });
+  };
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+  //   registerUser({ name, email, password });
+  // };
+
+  const { step } = user;
+  const { name, email, password, password2, city, address, postcode } = user;
+  const values = { name, email, password, password2, city, address, postcode };
+
+  switch (step) {
+    case 1:
+      return (
+        <UserDetail
+          nextStep={nextStep}
+          handleChange={handleChange}
+          values={values}
+        />
+      );
+    case 2:
+      return (
+        <PersonalDetail
+          nextStep={nextStep}
+          lastStep={lastStep}
+          handleChange={handleChange}
+          values={values}
+        />
+      );
+    case 3:
+      return (
+        <Confirm
+          nextStep={nextStep}
+          lastStep={lastStep}
+          values={values}
+          register={registerUser}
+        />
+      );
+    case 4:
+      return <Success />;
+  }
 };
 
 Register.propTypes = {
