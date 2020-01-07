@@ -1,11 +1,10 @@
 import React, { Fragment } from 'react';
 
-const Confirm = ({ values, nextStep, lastStep, register }) => {
+const Confirm = ({ values, lastStep, register }) => {
   const { name, email, password, city, address, postcode } = values;
-  const handleContinue = e => {
+  const handleSubmit = e => {
     e.preventDefault();
     register({ name, email, password, city, address, postcode });
-    nextStep();
   };
 
   const handleBack = e => {
@@ -24,9 +23,9 @@ const Confirm = ({ values, nextStep, lastStep, register }) => {
           <button
             type='button'
             className='btn btn-block'
-            onClick={handleContinue}
+            onClick={handleSubmit}
           >
-            Continue
+            Submit
           </button>
           <button type='button' className='btn btn-block' onClick={handleBack}>
             Back

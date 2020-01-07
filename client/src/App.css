@@ -250,7 +250,9 @@ img {
   padding-bottom: 0.3rem;
 }
 
-.form-container {
+.form-container,
+.confirm-container,
+.success-container {
   max-width: 600px;
   margin: 0rem auto 2rem;
   overflow: hidden;
@@ -261,6 +263,10 @@ img {
 h2,
 h3 {
   text-align: center;
+}
+
+.buttons {
+  display: flex;
 }
 
 .dashboard {

@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-const UserDetail = ({ nextStep, handleChange, values }) => {
+const UserDetail = ({ nextStep, handleChange, values, errors }) => {
   const handleContinue = e => {
     e.preventDefault();
     nextStep();
   };
-  const { name, email, password, password2, city, address, postcode } = values;
+  const { name, email, password, password2 } = values;
+
+  const [errorState, setErrorState] = useState({});
+
+  useEffect(() => {
+    if (errors) {
+      setErrorState(errors);
+    }
+  }, [errors]);
   return (
     <div className='form-container'>
       <h2 className='large'>Create your account</h2>
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className='form-group'>
           <input
             type='text'
@@ -65,48 +73,6 @@ const UserDetail = ({ nextStep, handleChange, values }) => {
             <div className='invalid-feedback'>{errorState}</div>
           )}
           <label htmlFor='password2'>Confirm Password</label>
-        </div>
-        <div className='form-group'>
-          <input
-            type='text'
-            name='city'
-            id='city'
-            value={city}
-            onChange={handleChange('city')}
-            required
-          />
-          {errorState.length > 0 && (
-            <div className='invalid-feedback'>{errorState}</div>
-          )}
-          <label htmlFor='city'>Enter City</label>
-        </div>
-        <div className='form-group'>
-          <input
-            type='text'
-            name='address'
-            id='address'
-            value={address}
-            onChange={handleChange('address')}
-            required
-          />
-          {errorState.length > 0 && (
-            <div className='invalid-feedback'>{errorState}</div>
-          )}
-          <label htmlFor='address'>Enter Address</label>
-        </div>
-        <div className='form-group'>
-          <input
-            type='text'
-            name='postcode'
-            id='postcode'
-            value={postcode}
-            onChange={handleChange('postcode')}
-            required
-          />
-          {errorState.length > 0 && (
-            <div className='invalid-feedback'>{errorState}</div>
-          )}
-          <label htmlFor='postcode'>Enter Postcode</label>
         </div>
         <button
           type='button'

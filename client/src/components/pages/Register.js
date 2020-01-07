@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import UserDetail from './UserDetail';
 import PersonalDetail from './PersonalDetail';
 import Confirm from './Confirm';
-import Success from './Success';
 
 const Register = ({ isAuthenticated, errors, registerUser }) => {
   const [user, setUser] = useState({
@@ -22,7 +21,6 @@ const Register = ({ isAuthenticated, errors, registerUser }) => {
 
   const [errorState, setErrorState] = useState({});
 
-  // const { name, email, password, password2 } = user;
   let history = useHistory();
 
   useEffect(() => {
@@ -37,21 +35,17 @@ const Register = ({ isAuthenticated, errors, registerUser }) => {
 
   //Proceed to next step
   const nextStep = () => {
-    setUser({ step: step + 1 });
+    setUser({ ...user, step: step + 1 });
   };
 
   //Go back to previous step
   const lastStep = () => {
-    setUser({ step: step - 1 });
+    setUser({ ...user, step: step - 1 });
   };
 
   const handleChange = input => e => {
     setUser({ ...user, [input]: e.target.value });
   };
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   registerUser({ name, email, password });
-  // };
 
   const { step } = user;
   const { name, email, password, password2, city, address, postcode } = user;
@@ -64,6 +58,7 @@ const Register = ({ isAuthenticated, errors, registerUser }) => {
           nextStep={nextStep}
           handleChange={handleChange}
           values={values}
+          errors={errors}
         />
       );
     case 2:
@@ -73,19 +68,13 @@ const Register = ({ isAuthenticated, errors, registerUser }) => {
           lastStep={lastStep}
           handleChange={handleChange}
           values={values}
+          errors={errors}
         />
       );
     case 3:
       return (
-        <Confirm
-          nextStep={nextStep}
-          lastStep={lastStep}
-          values={values}
-          register={registerUser}
-        />
+        <Confirm lastStep={lastStep} values={values} register={registerUser} />
       );
-    case 4:
-      return <Success />;
   }
 };
 
