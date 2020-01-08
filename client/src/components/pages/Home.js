@@ -12,7 +12,7 @@ const Home = ({ token, loadUser }) => {
     if (token) {
       loadUser();
     }
-  }, [isAuthenticated, token]);
+  }, [token]);
   return (
     <div className='home'>
       <Header />
