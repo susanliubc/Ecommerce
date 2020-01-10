@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import CartList from '../CartList';
 import { connect } from 'react-redux';
